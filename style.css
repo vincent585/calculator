@@ -1,0 +1,88 @@
+#container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+}
+
+#screen-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#button-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: 
+        'nine eight seven add'
+        'six five four subtract'
+        'three two one multiply'
+        'zero clears equals divide'
+        ;
+
+}
+
+/* *** GRID TEMPLATES *** */
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three { 
+    grid-area: three; 
+}
+
+.four {
+    grid-area: four;
+}
+
+.five {
+    grid-area: five;
+}
+
+.six {
+    grid-area: six;
+}
+
+.seven {
+    grid-area: seven;
+}
+
+.eight {
+    grid-area: eight;
+}
+
+.nine {
+    grid-area: nine;
+}
+
+.add {
+    grid-area: add;
+}
+
+.subtract {
+    grid-area: subtract;
+}
+
+.multiply {
+    grid-area: multiply;
+}
+
+.divide {
+    grid-area: divide;
+}
+
+.equals {
+    grid-area: equals;
+}
+
+.clear {
+    grid-area: clear;
+}
