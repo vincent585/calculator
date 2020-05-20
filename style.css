@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Miriam Libre', sans-serif;
+}
+
 #container {
     display: grid;
     grid-template-columns: 1fr;
@@ -5,11 +11,20 @@
     height: 500px;
     width: 500px;
     margin: auto;
+    margin-top: 10rem;
+    border: 1px solid #02c39a;
+    box-shadow: 10px 10px 8px #888888;
 }
 
 #screen-container {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 2.5rem;
+    padding: 10px;
+    border-bottom: 1px solid #f0f3bd;
+    background-color: #f0f3bd;
+    color: #00a896;
 }
 
 #button-container {
@@ -20,11 +35,32 @@
         'nine eight seven add'
         'six five four subtract'
         'three two one multiply'
-        'zero clears equals divide'
+        'zero clear equals divide'
         ;
+}
+
+/* *** BUTTON STYLING *** */
+
+button {
+    font-size: 1.5rem;
+    color: #f0f3bd;
+    border: none;
+    font-family: 'Miriam Libre', sans-serif;
 
 }
 
+.digit {
+    background-color: #028090;
+}
+
+.operator {
+    background-color: #00a896;
+}
+
+.clear {
+    background-color: #02c39a;
+    color: #f0f3bd;
+}
 /* *** GRID TEMPLATES *** */
 
 .one {
@@ -81,6 +117,8 @@
 
 .equals {
     grid-area: equals;
+    background-color: #02c39a;
+    color: #f0f3bd;
 }
 
 .clear {
