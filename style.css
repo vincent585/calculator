@@ -30,12 +30,13 @@ body {
 #button-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-template-areas: 
         'nine eight seven add'
         'six five four subtract'
         'three two one multiply'
-        'zero clear equals divide'
+        'zero decimal backspace divide'
+        'clear clear equals equals'
         ;
 }
 
@@ -60,6 +61,14 @@ button {
 .clear {
     background-color: #02c39a;
     color: #f0f3bd;
+}
+
+.decimal {
+    background-color: #028090;
+}
+
+.backspace {
+    background-color: #028090;
 }
 /* *** GRID TEMPLATES *** */
 
@@ -123,4 +132,12 @@ button {
 
 .clear {
     grid-area: clear;
+}
+
+.decimal {
+    grid-area: decimal;
+}
+
+.backspace {
+    grid-area: backspace;
 }
