@@ -3,13 +3,24 @@ const digits = document.querySelectorAll('.digit');
 const operators = document.querySelectorAll('.operator');
 const display = document.querySelector('#calc-screen');
 const equalBtn = document.querySelector('.equals');
+const clearBtn = document.querySelector('.clear');
+const decimal = document.querySelector('.decimal');
 
 
 
 const add = (a, b) => Number(a) + Number(b);
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
+const divide = (a, b) => {
+    if (b == 0) {
+        alert(`Can't divide by zero!`);
+        calculator.displayValue = calculator.firstOperand;
+        calculator.firstOperand = '';
+        return calculator.displayValue;
+    } else {
+        return a / b;
+    }
+}
 
 const operate = (a, b, operator) => {
     switch(operator) {
@@ -93,19 +104,13 @@ function handleMultipleOperators() {
     });
 }
 
-function inputDecimal(event) {
-    let decimalBtn = event.target.closest('.decimal');
-
-    if (!decimalBtn) return;
-
+function inputDecimal() {
     if (calculator.displayValue && calculator.operator && calculator.waitingForSecondOperand) {
         calculator.firstOperand = calculator.displayValue;
         calculator.displayValue = 0;
         calculator.displayValue += '.';
         calculator.waitingForSecondOperand = false;
         display.textContent = calculator.displayValue;
-
-        return;
     }
 
     if (display.textContent.includes('.')) {
@@ -116,11 +121,7 @@ function inputDecimal(event) {
     display.textContent = calculator.displayValue;
 }
 
-function resetCalculator(event) {
-    let clearBtn = event.target.closest('.clear');
-
-    if (!clearBtn) return;
-
+function resetCalculator() {
     calculator.displayValue = 0;
     calculator.firstOperand = '';
     calculator.operator = null;
@@ -132,5 +133,5 @@ handleMultipleOperators();
 equalBtn.addEventListener('click', evaluateExpression);
 container.addEventListener('click', updateDisplay);
 container.addEventListener('click', getOperator);
-container.addEventListener('click', resetCalculator);
-container.addEventListener('click', inputDecimal);
+clearBtn.addEventListener('click', resetCalculator);
+decimal.addEventListener('click', inputDecimal);
