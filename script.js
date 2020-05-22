@@ -5,6 +5,7 @@ const display = document.querySelector('#calc-screen');
 const equalBtn = document.querySelector('.equals');
 const clearBtn = document.querySelector('.clear');
 const decimal = document.querySelector('.decimal');
+const backspaceBtn = document.querySelector('.backspace');
 
 
 
@@ -38,7 +39,7 @@ const operate = (a, b, operator) => {
 }
 
 const calculator = {
-    displayValue: 0,
+    displayValue: '0',
     operator: null,
     firstOperand: '',
     waitingForSecondOperand: false,
@@ -51,11 +52,11 @@ function updateDisplay(event) {
 
         if (calculator.operator && calculator.waitingForSecondOperand) {
             calculator.firstOperand = calculator.displayValue;
-            calculator.displayValue = 0;
+            calculator.displayValue = '0';
             calculator.waitingForSecondOperand = false;
         } 
 
-        if (calculator.displayValue === 0) {
+        if (calculator.displayValue === '0') {
             calculator.displayValue = digitButton.value;
             display.textContent = calculator.displayValue;
         } else {
@@ -83,7 +84,7 @@ function evaluateExpression(event) {
         if (calculator.firstOperand && 
             calculator.displayValue && 
             calculator.operator) {
-                calculator.displayValue = parseFloat(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
+                calculator.displayValue = String(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
                 calculator.firstOperand = calculator.displayValue;
                 display.textContent = calculator.displayValue;
             calculator.operator = null;
@@ -95,7 +96,7 @@ function evaluateExpression(event) {
             calculator.displayValue && 
             calculator.operator && 
             !calculator.waitingForSecondOperand) {
-                calculator.displayValue = parseFloat(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
+                calculator.displayValue = String(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
                 calculator.firstOperand = calculator.displayValue;
                 display.textContent = calculator.displayValue;
         }
@@ -111,7 +112,7 @@ function handleMultipleOperators() {
 function inputDecimal() {
     if (calculator.displayValue && calculator.operator && calculator.waitingForSecondOperand) {
         calculator.firstOperand = calculator.displayValue;
-        calculator.displayValue = 0;
+        calculator.displayValue = '0';
         calculator.displayValue += '.';
         calculator.waitingForSecondOperand = false;
         display.textContent = calculator.displayValue;
@@ -126,11 +127,16 @@ function inputDecimal() {
 }
 
 function resetCalculator() {
-    calculator.displayValue = 0;
+    calculator.displayValue = '0';
     calculator.firstOperand = '';
     calculator.operator = null;
     calculator.waitingForSecondOperand = false;
     display.textContent = calculator.displayValue;
+}
+
+function deleteOne() {
+    calculator.displayValue = calculator.displayValue.slice(0, -1);
+    display.textContent =  calculator.displayValue;
 }
 
 handleMultipleOperators();
@@ -139,3 +145,4 @@ container.addEventListener('click', updateDisplay);
 container.addEventListener('click', getOperator);
 clearBtn.addEventListener('click', resetCalculator);
 decimal.addEventListener('click', inputDecimal);
+backspaceBtn.addEventListener('click', deleteOne);
