@@ -52,8 +52,6 @@ function updateDisplay(event) {
             display.textContent = calculator.displayValue;
             
         }
-        console.log('update display', calculator);
-        
 }
 
 function getOperator(event) {
@@ -63,8 +61,6 @@ function getOperator(event) {
 
     calculator.operator = operatorButton.value;
     calculator.waitingForSecondOperand = true; 
-    console.log('get operator', calculator);
-
 } 
 
 function evaluateExpression(event) {
@@ -78,7 +74,6 @@ function evaluateExpression(event) {
             calculator.firstOperand = calculator.displayValue;
             display.textContent = calculator.displayValue;
             calculator.operator = null;
-            console.log('eval expression', calculator);
         }
     }
 
@@ -89,7 +84,6 @@ function evaluateExpression(event) {
             display.textContent = calculator.displayValue;
         }
     }
-
     
 }
 
@@ -104,10 +98,20 @@ function inputDecimal(event) {
 
     if (!decimalBtn) return;
 
-    if (display.textContent.includes('.')) {
+    if (calculator.displayValue && calculator.operator && calculator.waitingForSecondOperand) {
+        calculator.firstOperand = calculator.displayValue;
+        calculator.displayValue = 0;
+        calculator.displayValue += '.';
+        calculator.waitingForSecondOperand = false;
+        display.textContent = calculator.displayValue;
+
         return;
     }
 
+    if (display.textContent.includes('.')) {
+        return;
+    }
+    
     calculator.displayValue += '.';
     display.textContent = calculator.displayValue;
 }
