@@ -47,7 +47,16 @@ button {
     color: #f0f3bd;
     border: none;
     font-family: 'Miriam Libre', sans-serif;
+}
 
+button:active {
+    transition: 0.07s;
+    transform: scale(1.1);
+    border: 1px solid #f0f3bd;
+}
+
+button:focus {
+    outline: 0;
 }
 
 .digit {
@@ -140,4 +149,13 @@ button {
 
 .backspace {
     grid-area: backspace;
+}
+
+/*** MEDIA QUERY *** */ 
+
+@media screen and (max-width: 700px) {
+    #container {
+        width: 350px;
+        height: 350px;
+    }
 }

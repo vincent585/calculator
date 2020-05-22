@@ -80,22 +80,26 @@ function evaluateExpression(event) {
     let equalBtn = event.target.closest('.equals');
 
     if (equalBtn) {
-        if (calculator.firstOperand && calculator.displayValue && calculator.operator) {
-            calculator.displayValue = parseFloat(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
-            calculator.firstOperand = calculator.displayValue;
-            display.textContent = calculator.displayValue;
+        if (calculator.firstOperand && 
+            calculator.displayValue && 
+            calculator.operator) {
+                calculator.displayValue = parseFloat(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
+                calculator.firstOperand = calculator.displayValue;
+                display.textContent = calculator.displayValue;
             calculator.operator = null;
         }
     }
 
     if (operatorButton) {
-        if (calculator.firstOperand && calculator.displayValue && calculator.operator) {
-            calculator.displayValue = parseFloat(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
-            calculator.firstOperand = calculator.displayValue;
-            display.textContent = calculator.displayValue;
+        if (calculator.firstOperand && 
+            calculator.displayValue && 
+            calculator.operator && 
+            !calculator.waitingForSecondOperand) {
+                calculator.displayValue = parseFloat(operate(calculator.firstOperand, calculator.displayValue, calculator.operator));
+                calculator.firstOperand = calculator.displayValue;
+                display.textContent = calculator.displayValue;
         }
     }
-    
 }
 
 function handleMultipleOperators() {
