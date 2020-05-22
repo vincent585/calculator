@@ -8,6 +8,7 @@ Included in this project:
 - backspace and all clear functionality
 - does not allow repeating operators
 - sleek button animations
+- division by zero does not break the calculator
 
 Things to add:
 - improve order of operations and allow multi-operator expressions
